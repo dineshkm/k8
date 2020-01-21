@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-deploy
+  labels:
+    name: rs
+    type: back-end
+spec:
+  template:
+    metadata:
+      name: nginx
+      labels:
+        name: rs
+        type: back-end
+    spec:
+      containers:
+      - name: nginx-demo
+        image: nginx
+      nodeSelector:
+        type: back-end
+  replicas: 2
+  selector:
+    matchLabels:
+      name: rs
+      type: back-end    
