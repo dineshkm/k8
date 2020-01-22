@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: var-demo
+  labels:
+    purpose: demonstrate-envards
+spec:
+  containers:
+  - name: env-var-demo
+    image: gcr.io/google-samples/node-hello:1.0
+    env:
+    - name: DEMO_GREETING
+      value: DINESH
+    - name: DEMO_HELLO
+      value: welcome
+    command: ["echo"]
+    args: ["$(DEMO_GREETING) $(DEMO_HELLO)"]
